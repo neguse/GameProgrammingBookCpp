@@ -13,44 +13,44 @@ float3 gEmissionColor : register( c10 );
 sampler2D gSampler : register( s0 );
 
 struct FromVertex{
-	float4 color : COLOR0; //’¸“_ƒJƒ‰[
+	float4 color : COLOR0; //é ‚ç‚¹ã‚«ãƒ©ãƒ¼
 	float2 texCoord : TEXCOORD0;
 	float3 position : TEXCOORD1;
 	float3 normal : TEXCOORD2;
 };
 
 float4 main( FromVertex input ) : COLOR {
-	//”½ËƒxƒNƒ^‚Ì¶¬(‚½‚¾‚µ‹üƒxƒNƒ^‚É‘Î‚µ‚Ä)
+	//åå°„ãƒ™ã‚¯ã‚¿ã®ç”Ÿæˆ(ãŸã ã—è¦–ç·šãƒ™ã‚¯ã‚¿ã«å¯¾ã—ã¦)
 	float3 ev = gEyePosition - input.position;
 	float3 nv = normalize( input.normal );
 	float3 rv = 2.0 * nv * dot( nv, ev ) - ev;
-	//ƒ‰ƒCƒgƒxƒNƒ^‚Ì¶¬
+	//ãƒ©ã‚¤ãƒˆãƒ™ã‚¯ã‚¿ã®ç”Ÿæˆ
 	float4 lvX, lvY, lvZ;
 	lvX = gLightPosX - input.position.xxxx;
 	lvY = gLightPosY - input.position.yyyy;
 	lvZ = gLightPosZ - input.position.zzzz;
-	//ƒ‰ƒCƒgƒxƒNƒ^‚Æ”½ËƒxƒNƒ^‚Ì“àÏ
+	//ãƒ©ã‚¤ãƒˆãƒ™ã‚¯ã‚¿ã¨åå°„ãƒ™ã‚¯ã‚¿ã®å†…ç©
 	float4 s;
 	s = lvX * rv.xxxx;
 	s += lvY * rv.yyyy;
 	s += lvZ * rv.zzzz;
-	//w”ŠÖ”‚ğæ‚é‘O‚É |L||R|‚Åœ‚·•K—v‚ ‚èB
-	float4 lvL2 = lvX * lvX; //ƒ‰ƒCƒgƒxƒNƒ^“ñæ’·‚³
+	//æŒ‡æ•°é–¢æ•°ã‚’å–ã‚‹å‰ã« |L||R|ã§é™¤ã™å¿…è¦ã‚ã‚Šã€‚
+	float4 lvL2 = lvX * lvX; //ãƒ©ã‚¤ãƒˆãƒ™ã‚¯ã‚¿äºŒä¹—é•·ã•
 	lvL2 += lvY * lvY;
 	lvL2 += lvZ * lvZ;
-	lvL2 += 0.0001; //0Š„‚è–h~
-	float4 rcpLvL = rsqrt( lvL2 ); //’·‚³‚Ì‹t”
+	lvL2 += 0.0001; //0å‰²ã‚Šé˜²æ­¢
+	float4 rcpLvL = rsqrt( lvL2 ); //é•·ã•ã®é€†æ•°
 	float4 rvL2 = dot( rv, rv );
 	s *= rsqrt( lvL2 * rvL2 );
 	s = max( 0, s );
 	s = pow( s, gSpecularColor.w );
-	//‚³‚ç‚Éƒ‰ƒCƒg‹——£‚Åœ‚·
+	//ã•ã‚‰ã«ãƒ©ã‚¤ãƒˆè·é›¢ã§é™¤ã™
 	s *= rcpLvL;
-	//ƒfƒBƒtƒ…[ƒY€‚ğŒvZ‚·‚éB
+	//ãƒ‡ã‚£ãƒ•ãƒ¥ãƒ¼ã‚ºé …ã‚’è¨ˆç®—ã™ã‚‹ã€‚
 	float4 d = lvX * nv.xxxx;
 	d += lvY * nv.yyyy;
 	d += lvZ * nv.zzzz; 
-	d *= rcpLvL * rcpLvL; //‚±‚ê‚ğ|L|^2‚Åœ‚·‚éB
+	d *= rcpLvL * rcpLvL; //ã“ã‚Œã‚’|L|^2ã§é™¤ã™ã‚‹ã€‚
 	d = max( 0, d );
 
 	float3 dc = gAmbient;
@@ -71,4 +71,3 @@ float4 main( FromVertex input ) : COLOR {
 	c.w = c.w;
 	return c;
 }
-
