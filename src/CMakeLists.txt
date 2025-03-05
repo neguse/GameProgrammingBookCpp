@@ -1,0 +1,2 @@
+add_subdirectory(01_FirstGame)
+add_subdirectory(GameLibs)

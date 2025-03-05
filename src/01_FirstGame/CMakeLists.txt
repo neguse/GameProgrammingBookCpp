@@ -1,0 +1,4 @@
+add_subdirectory(NimotsuKun)
+add_subdirectory(NimotsuKun2)
+add_subdirectory(NimotsuKunBitOperation)
+add_subdirectory(NimotsuKunRawMemory)
