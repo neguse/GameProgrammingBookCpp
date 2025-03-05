@@ -9,7 +9,7 @@ class Parent;
 class Child : public Base{
 public:
 	virtual ~Child();
-	Base* update( Base* ); //‚±‚ê‚ÍÀ‘Ì‚ğì‚Á‚Ä‚â‚é
+	Base* update( Base* ); //ã“ã‚Œã¯å®Ÿä½“ã‚’ä½œã£ã¦ã‚„ã‚‹
 	virtual Base* update( Parent* ) = 0;
 };
 

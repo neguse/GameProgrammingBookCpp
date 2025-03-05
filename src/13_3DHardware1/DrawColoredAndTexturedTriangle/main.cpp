@@ -28,7 +28,7 @@ namespace GameLib{
 		double t1[ 2 ] = { 1.0, 0.0 };
 		double t2[ 2 ] = { 0.0, 1.0 };
 		drawTriangle2D( p0, p1, p2, t0, t1, t2, 0xffffff00, 0xff00ffff, 0xffff00ff );		
-		//�I���������Ă݂悤��
+		//終了処理してみようか
 		if ( isEndRequested() ){
 			destroyTexture( &gTexture );
 		}

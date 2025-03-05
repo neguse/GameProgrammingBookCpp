@@ -1,7 +1,7 @@
 #ifndef INCLUDED_LIST_H
 #define INCLUDED_LIST_H
 
-//‚í‚©‚è‚â‚·‚¢‚æ‚¤‚É’l‚Ídouble‚É‚µ‚Ä‚ ‚éB
+//ã‚ã‹ã‚Šã‚„ã™ã„ã‚ˆã†ã«å€¤ã¯doubleã«ã—ã¦ã‚ã‚‹ã€‚
 class List{
 public:
 	struct Node{
@@ -11,16 +11,16 @@ public:
 	};
 	List();
 	~List();
-	//’Ç‰Á ‘S‚ÄêŠ‚ğ•Ô‚·
-	Node* addBefore( Node* , double value ); //w’èêŠ‚Ì‘O‚É’Ç‰Á
-	Node* addAfter( Node*, double value ); //w’èêŠ‚ÌŒã‚É’Ç‰Á
-	Node* addHead( double value ); //æ“ª’Ç‰Á
-	Node* addTail( double value ); //––”ö’Ç‰Á
-	//íœ
-	void remove( Node* ); //w’èêŠ‚ğíœ
-	void removeHead(); //æ“ª‚ğíœ
-	void removeTail(); //––”ö‚ğíœ
-	//æ“¾Œn
+	//è¿½åŠ  å…¨ã¦å ´æ‰€ã‚’è¿”ã™
+	Node* addBefore( Node* , double value ); //æŒ‡å®šå ´æ‰€ã®å‰ã«è¿½åŠ 
+	Node* addAfter( Node*, double value ); //æŒ‡å®šå ´æ‰€ã®å¾Œã«è¿½åŠ 
+	Node* addHead( double value ); //å…ˆé ­è¿½åŠ 
+	Node* addTail( double value ); //æœ«å°¾è¿½åŠ 
+	//å‰Šé™¤
+	void remove( Node* ); //æŒ‡å®šå ´æ‰€ã‚’å‰Šé™¤
+	void removeHead(); //å…ˆé ­ã‚’å‰Šé™¤
+	void removeTail(); //æœ«å°¾ã‚’å‰Šé™¤
+	//å–å¾—ç³»
 	double value( Node* ) const;
 	Node* next( Node* ) const;
 	Node* previous( Node* ) const;
@@ -32,4 +32,3 @@ private:
 };
 
 #endif
-

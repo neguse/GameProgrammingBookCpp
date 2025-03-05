@@ -15,17 +15,17 @@ class Model;
 
 class GraphicsDatabase{
 public:
-	//ƒjƒZxml‚ÌElement‚©‚ç¶¬
+	//ãƒ‹ã‚»xmlã®Elementã‹ã‚‰ç”Ÿæˆ
 	GraphicsDatabase( GameLib::PseudoXml::Element& );
-	//ƒtƒ@ƒCƒ‹‚©‚ç¶¬
+	//ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ç”Ÿæˆ
 	GraphicsDatabase( const char* filename );
 	~GraphicsDatabase();
-	//Žæ“¾Œn
+	//å–å¾—ç³»
 	const VertexBuffer* vertexBuffer( const char* name ) const;
 	const IndexBuffer* indexBuffer( const char* name ) const;
 	const Texture* texture( const char* name ) const;
 	const Batch* batch( const char* name ) const;
-	//ƒ‚ƒfƒ‹¶¬
+	//ãƒ¢ãƒ‡ãƒ«ç”Ÿæˆ
 	Model* createModel( const char* batchName ) const;
 private:
 	void createFromElement( GameLib::PseudoXml::Element& );
@@ -42,4 +42,3 @@ private:
 };
 
 #endif
-

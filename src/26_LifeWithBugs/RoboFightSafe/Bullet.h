@@ -26,17 +26,17 @@ public:
 	const Vector3* getPosition() const;
 	void update( const Vector3& enemyPos ); 
 	void draw() const;
-	bool isEmpty() const; //g‚Á‚Ä‚È‚¯‚ê‚ÎtrueBmCount<0‚Å”»’è
-	void die(); //’eÁ‚¦‚Ü‚·
+	bool isEmpty() const; //ä½¿ã£ã¦ãªã‘ã‚Œã°trueã€‚mCount<0ã§åˆ¤å®š
+	void die(); //å¼¾æ¶ˆãˆã¾ã™
 private:
 	AutoPtr< Model > mModel;
-	int mCount; //-1‚È‚ç‚»‚Ì’e‚Í‹ó‚¾‚Æ‚¢‚¤‚±‚Æ‚É‚µ‚æ‚¤B
-	bool mHoming; //’Ç”ö‚·‚éH
+	int mCount; //-1ãªã‚‰ãã®å¼¾ã¯ç©ºã ã¨ã„ã†ã“ã¨ã«ã—ã‚ˆã†ã€‚
+	bool mHoming; //è¿½å°¾ã™ã‚‹ï¼Ÿ
 
-	static const float mHomingX; //Šp“x—U“±«”\X
-	static const float mHomingY; //Šp“x—U“±«”\Y
-	static const int mLife; //’eõ–½
-	static const float mSpeed; //’e‚Ì‘¬“x
+	static const float mHomingX; //è§’åº¦èª˜å°æ€§èƒ½X
+	static const float mHomingY; //è§’åº¦èª˜å°æ€§èƒ½Y
+	static const int mLife; //å¼¾å¯¿å‘½
+	static const float mSpeed; //å¼¾ã®é€Ÿåº¦
 };
 
 #endif

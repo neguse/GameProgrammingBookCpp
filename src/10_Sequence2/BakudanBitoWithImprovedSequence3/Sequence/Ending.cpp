@@ -19,15 +19,15 @@ Ending::~Ending(){
 
 Base* Ending::update( Parent* ){
 	Base* next = this;
-	if ( mCount == 120 ){ //2•b‘Ò‚Â 
+	if ( mCount == 120 ){ //2ç§’å¾…ã¤ 
 		next = new Title;
 	}
-	//•`‰æ
+	//æç”»
 	mImage->draw();
-	//š‚ğo‚·
+	//å­—ã‚’å‡ºã™
 	Framework f = Framework::instance();
-	f.drawDebugString( 0, 0, "µÒÃŞÄ³! ±ÅÀÊ ºÉ¹Ş°Ñ¦ ¾²Ê¼Ï¼À" );
-	f.drawDebugString( 0, 1, "Â¸¯ÀËÄ Ë×ÔÏÀ¶¼" );
+	f.drawDebugString( 0, 0, "ï½µï¾’ï¾ƒï¾ï¾„ï½³! ï½±ï¾…ï¾€ï¾Š ï½ºï¾‰ï½¹ï¾ï½°ï¾‘ï½¦ ï½¾ï½²ï¾Šï½¼ï¾ï½¼ï¾€" );
+	f.drawDebugString( 0, 1, "ï¾‚ï½¸ï½¯ï¾€ï¾‹ï¾„ ï¾‹ï¾—ï¾”ï¾ï¾€ï½¶ï½¼" );
 
 	++mCount;
 

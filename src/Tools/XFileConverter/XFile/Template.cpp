@@ -30,7 +30,7 @@ const RefString* Template::getType() const {
 }
 
 const RefString* Template::getChildName( int index ) const {
-	if ( index >= mChildren.size() ){ //‚æ‚è‘å‚«‚¢”Ô†‚ğ—v‹‚³‚ê‚é‚±‚Æ‚ª‚ ‚éBŠg’£•”‚¾B0‚ğ•Ô‚·B
+	if ( index >= mChildren.size() ){ //ã‚ˆã‚Šå¤§ãã„ç•ªå·ã‚’è¦æ±‚ã•ã‚Œã‚‹ã“ã¨ãŒã‚ã‚‹ã€‚æ‹¡å¼µéƒ¨ã ã€‚0ã‚’è¿”ã™ã€‚
 		return 0;
 	}else{
 		return &mChildren[ index ]->mName;
@@ -38,11 +38,11 @@ const RefString* Template::getChildName( int index ) const {
 }
 
 const RefString* Template::getChildType( int index ) const {
-	if ( index >= mChildren.size() ){ //‚æ‚è‘å‚«‚¢”Ô†‚ğ—v‹‚³‚ê‚é‚±‚Æ‚ª‚ ‚éBŠg’£•”‚¾B0‚ğ•Ô‚·B
+	if ( index >= mChildren.size() ){ //ã‚ˆã‚Šå¤§ãã„ç•ªå·ã‚’è¦æ±‚ã•ã‚Œã‚‹ã“ã¨ãŒã‚ã‚‹ã€‚æ‹¡å¼µéƒ¨ã ã€‚0ã‚’è¿”ã™ã€‚
 		return 0;
-	}else if ( mChildren[ index ]->mTemplate ){ //•¡‡Œ^
+	}else if ( mChildren[ index ]->mTemplate ){ //è¤‡åˆå‹
 		return mChildren[ index ]->mTemplate->getType();
-	}else{ //ƒvƒŠƒ~ƒeƒBƒu
+	}else{ //ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–
 		return &mChildren[ index ]->mPrimitiveType;
 	}
 }
@@ -62,23 +62,23 @@ int* level ) const {
 	const int n = t.size();
 	Tank< CompositeElement::Child > children;
 	map< RefString, int > arrayIndices;
-	//ƒŒƒMƒ…ƒ‰[ƒf[ƒ^
+	//ãƒ¬ã‚®ãƒ¥ãƒ©ãƒ¼ãƒ‡ãƒ¼ã‚¿
 	for ( int i = 0; i < mChildren.size(); ++i ){
 		++( *level );
-		CompositeElement::Child c; //q
-		if ( ( p < n ) && ( t[ p ] == Token::LEFT_BRACE ) ){ //QÆ—ˆ‚Ü‚µ‚½‚Ë...
+		CompositeElement::Child c; //å­
+		if ( ( p < n ) && ( t[ p ] == Token::LEFT_BRACE ) ){ //å‚ç…§æ¥ã¾ã—ãŸã­...
 			p = parseReference( &c.mElement, t, p, namedElements );
 		}else{
 			const TemplateLine& line = *mChildren[ i ];
-			if ( line.mIndices.size() > 0 ){ //”z—ñ‚Å‚·
+			if ( line.mIndices.size() > 0 ){ //é…åˆ—ã§ã™
 				p = createArray( &c.mElement, line, t, p, arrayIndices, parser, namedElements, level );
-			}else if ( line.mTemplate ){ //•¡‡Œ^‚Å‚·‚Ë
+			}else if ( line.mTemplate ){ //è¤‡åˆå‹ã§ã™ã­
 				RefString nullStr;
 				p = line.mTemplate->createElement( &c.mElement, t, p, parser, nullStr, namedElements, level );
-			}else{ //ƒvƒŠƒ~ƒeƒBƒu‚Å‚·
+			}else{ //ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ã§ã™
 				c.mPrimitive = *t[ p ].get();
 				++p;
-				int size = parser.toInt( c.mPrimitive ); //“Y‚¦š‚É‚È‚è‚¤‚é‚©’²‚×‚Ü‚·
+				int size = parser.toInt( c.mPrimitive ); //æ·»ãˆå­—ã«ãªã‚Šã†ã‚‹ã‹èª¿ã¹ã¾ã™
 				if ( size > 0 ){
 					arrayIndices.insert( make_pair( line.mName, size ) );
 				}
@@ -88,51 +88,51 @@ int* level ) const {
 		Parser::dieIf( p >= n );
 		if ( t[ p ] == Token::SEMICOLON ){
 			++p;
-		}else{ //‚ ‚è‚¦‚È‚¢
-#if 0 //ƒƒ^ƒZƒRƒCƒA‘Î‰BƒZƒ~ƒRƒƒ“”²‚¯‚ğƒXƒ‹[
+		}else{ //ã‚ã‚Šãˆãªã„
+#if 0 //ãƒ¡ã‚¿ã‚»ã‚³ã‚¤ã‚¢å¯¾å¿œã€‚ã‚»ãƒŸã‚³ãƒ­ãƒ³æŠœã‘ã‚’ã‚¹ãƒ«ãƒ¼
 			Parder::dieIf( true );
 #endif
 		}
 		--( *level );
-#if 1 //ƒƒ^ƒZƒRƒCƒA‘Î‰ƒR[ƒh —]•ª‚ÈƒZƒ~ƒRƒƒ“‚ğœ‹
-		if ( ( *level == 0 ) && ( p < n ) && ( t[ p ] == Token::SEMICOLON ) ){ //‚ ‚è‚¦‚È‚¢
+#if 1 //ãƒ¡ã‚¿ã‚»ã‚³ã‚¤ã‚¢å¯¾å¿œã‚³ãƒ¼ãƒ‰ ä½™åˆ†ãªã‚»ãƒŸã‚³ãƒ­ãƒ³ã‚’é™¤å»
+		if ( ( *level == 0 ) && ( p < n ) && ( t[ p ] == Token::SEMICOLON ) ){ //ã‚ã‚Šãˆãªã„
 			++p;
 		}
 #endif
 	}
-	//’Ç‰Áƒf[ƒ^
+	//è¿½åŠ ãƒ‡ãƒ¼ã‚¿
 	while ( p < n ){
 		CompositeElement::Child c;
-		if ( t[ p ] == Token::LEFT_BRACE ){ //QÆ—ˆ‚Ü‚µ‚½‚Ë...
+		if ( t[ p ] == Token::LEFT_BRACE ){ //å‚ç…§æ¥ã¾ã—ãŸã­...
 			p = parseReference( &c.mElement, t, p, namedElements );
 		}else if ( t[ p ] == Token::IDENTIFIER ){
-			//Œ^–¼‚ğæ‚èo‚µ‚Ü‚·
+			//å‹åã‚’å–ã‚Šå‡ºã—ã¾ã™
 			const RefString* typeName = t[ p ].get();
 			++p;
-			//•Ï”–¼æ‚èo‚µ
+			//å¤‰æ•°åå–ã‚Šå‡ºã—
 			RefString childName;
 			if ( ( p < n ) && ( t[ p ] == Token::IDENTIFIER ) ){
 				childName = *t[ p ].get();
 				++p;
 			}
 			//{
-			Parser::dieIf( ( p >= n ) || ( t[ p ] != Token::LEFT_BRACE ) ); //‚ ‚è‚¦‚È‚¢
+			Parser::dieIf( ( p >= n ) || ( t[ p ] != Token::LEFT_BRACE ) ); //ã‚ã‚Šãˆãªã„
 			++p;
-			//ƒeƒ“ƒvƒŒ[ƒg‚Éƒf[ƒ^‚ğì‚Á‚Ä‚à‚ç‚¢‚Ü‚·B
-			if ( parser.isPrimitiveType( *typeName ) ){ //ƒvƒŠƒ~ƒeƒBƒu
+			//ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆã«ãƒ‡ãƒ¼ã‚¿ã‚’ä½œã£ã¦ã‚‚ã‚‰ã„ã¾ã™ã€‚
+			if ( parser.isPrimitiveType( *typeName ) ){ //ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–
 				c.mPrimitive = *t[ p ].get();
 				++p;
-			}else{ //•¡‡Œ^
+			}else{ //è¤‡åˆå‹
 				const Template* tmpl = parser.getTemplate( *typeName );
 				int childLevel = 0;
 				p = tmpl->createElement( &c.mElement, t, p, parser, childName, namedElements, &childLevel );
 				namedElements->insert( make_pair( childName, c.mElement ) );
 			}
 			//}
-			Parser::dieIf( ( p >= n ) || ( t[ p ] != Token::RIGHT_BRACE ) ); //‚ ‚è‚¦‚È‚¢
+			Parser::dieIf( ( p >= n ) || ( t[ p ] != Token::RIGHT_BRACE ) ); //ã‚ã‚Šãˆãªã„
 			++p;
 		}else{
-			break; //QÆ‚Å‚àƒf[ƒ^À‘Ì‚Å‚à‚È‚¢B‚Â‚Ü‚èI‚í‚éB
+			break; //å‚ç…§ã§ã‚‚ãƒ‡ãƒ¼ã‚¿å®Ÿä½“ã§ã‚‚ãªã„ã€‚ã¤ã¾ã‚Šçµ‚ã‚ã‚‹ã€‚
 		}
 		children.add( c );
 	}
@@ -156,7 +156,7 @@ const map< RefString, int >& arrayIndices,
 const Parser& parser,
 map< RefString, Element* >* namedElements,
 int* level ) const {
-	//Å‰‚É‚â‚é‚±‚Æ‚Í”z—ñ‚Ì“Y‚¦š‚ÌŸŒ³‚ÆŠeŸŒ³‚ÌƒTƒCƒY‚ğæ“¾‚·‚é‚±‚ÆB‚±‚±‚ÍÅ“K‰»‚Ì—]’n‚ª‚ ‚é
+	//æœ€åˆã«ã‚„ã‚‹ã“ã¨ã¯é…åˆ—ã®æ·»ãˆå­—ã®æ¬¡å…ƒã¨å„æ¬¡å…ƒã®ã‚µã‚¤ã‚ºã‚’å–å¾—ã™ã‚‹ã“ã¨ã€‚ã“ã“ã¯æœ€é©åŒ–ã®ä½™åœ°ãŒã‚ã‚‹
 	const int n = t.size();
 	const Array< RefString >& indices = line.mIndices;
 	int dimension = indices.size();
@@ -175,26 +175,26 @@ int* level ) const {
 		}
 		arraySize *= arraySizes[ k ];
 	}
-	//ƒvƒŠƒ~ƒeƒBƒu”z—ñ‚©•¡‡Œ^‚©‚Å•ªŠò
-	if ( line.mTemplate ){ //•¡‡Œ^
+	//ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–é…åˆ—ã‹è¤‡åˆå‹ã‹ã§åˆ†å²
+	if ( line.mTemplate ){ //è¤‡åˆå‹
 		CompositeArrayElement* a = NEW CompositeArrayElement( arraySizes );
 		for ( int i = 0; i < arraySize; ++i ){
 			Element* te = 0;
 			RefString nullStr;
 			p = line.mTemplate->createElement( &te, t, p, parser, nullStr, namedElements, level );
-			if ( i < arraySize - 1 ){ //ÅI—v‘f‚¾‚¯‚ÍƒJƒ“ƒ}‚ª‚È‚¢B‚È‚ñ‚Ä‚±‚Á‚½I
+			if ( i < arraySize - 1 ){ //æœ€çµ‚è¦ç´ ã ã‘ã¯ã‚«ãƒ³ãƒãŒãªã„ã€‚ãªã‚“ã¦ã“ã£ãŸï¼
 				Parser::dieIf( ( p >= n ) || ( t[ p ] != Token::COMMA ) );
 				++p;
 			}
 			a->setElement( i, &te );
 		}
 		*elementOut = a;
-	}else{ //ƒvƒŠƒ~ƒeƒBƒu
+	}else{ //ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–
 		PrimitiveArrayElement* a = NEW PrimitiveArrayElement( arraySizes, line.mPrimitiveType );
 		for ( int i = 0; i < arraySize; ++i ){
 			a->setElement( i, *t[ p ].get() );
 			++p;
-			if ( i < arraySize - 1 ){ //ÅI—v‘f‚¾‚¯‚ÍƒJƒ“ƒ}‚ª‚È‚¢B‚È‚ñ‚Ä‚±‚Á‚½I
+			if ( i < arraySize - 1 ){ //æœ€çµ‚è¦ç´ ã ã‘ã¯ã‚«ãƒ³ãƒãŒãªã„ã€‚ãªã‚“ã¦ã“ã£ãŸï¼
 				Parser::dieIf( ( p >= n ) || ( t[ p ] != Token::COMMA ) );
 				++p;
 			}
@@ -204,7 +204,7 @@ int* level ) const {
 	return p;
 }
 
-//QÆˆ— { name | UUID | name UUID }
+//å‚ç…§å‡¦ç† { name | UUID | name UUID }
 int Template::parseReference(
 Element** elementOut,
 const Array< Token >& t,
@@ -212,25 +212,25 @@ int p,
 map< RefString, Element* >* ) const {
 	const int n = t.size();
 
-	++p; //¶‚©‚Á‚±‚ğ”ò‚Î‚·
+	++p; //å·¦ã‹ã£ã“ã‚’é£›ã°ã™
 	RefString refName;
 	if ( ( p < n ) && ( t[ p ] == Token::IDENTIFIER ) ){
 		refName = *t[ p ].get();
 		++p;
 	}
-	if ( ( p < n ) && ( t[ p ] == Token::UUID ) ){ //UUID‚Í–¼‘O‚ª‚È‚¢‚¾‚¯æ‚Á‚Ä‚­‚éB
+	if ( ( p < n ) && ( t[ p ] == Token::UUID ) ){ //UUIDã¯åå‰ãŒãªã„æ™‚ã ã‘å–ã£ã¦ãã‚‹ã€‚
 		++p;
 		if ( refName.size() == 0 ){
 			refName = *t[ p ].get();
 		}
 	}
 	Parser::dieIf( refName.size() == 0 );
-	Parser::dieIf( ( p >= n ) || ( t[ p ] != Token::RIGHT_BRACE ) ); //‚ ‚è‚¦‚È‚¢
+	Parser::dieIf( ( p >= n ) || ( t[ p ] != Token::RIGHT_BRACE ) ); //ã‚ã‚Šãˆãªã„
 	++p;
 
 	*elementOut = NEW ReferenceElement( refName );
 /*
-	//QÆ‚ğ·‚µ‚İ‚Ü‚·
+	//å‚ç…§ã‚’å·®ã—è¾¼ã¿ã¾ã™
 	map< RefString, Element* >::iterator it = namedElements->find( refName );
 	Parser::dieIf( it == namedElements->end() );
 	*elementOut = it->second;
@@ -240,4 +240,3 @@ map< RefString, Element* >* ) const {
 
 
 } //namespace XFile
-

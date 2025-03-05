@@ -40,4 +40,3 @@ const Vector3* NodeTemplate::scale() const {
 const string* NodeTemplate::name() const {
 	return &mName;
 }
-

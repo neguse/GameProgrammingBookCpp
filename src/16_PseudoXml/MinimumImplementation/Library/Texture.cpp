@@ -32,4 +32,3 @@ const string* Texture::name() const {
 	return &mName;
 }
 
-

@@ -16,9 +16,9 @@ namespace Scene{
 
 Animation::Impl::Impl( PseudoXml::ConstElement& e, Container::Impl& c ) : 
 mContainer( &c ){
-	ASSERT( RefString( "Animation" ) == e.name() ); //ƒAƒjƒ‚¾‚æ‚ËH
-	ASSERT( e.childNumber() > 0 ); //ƒm[ƒhˆêŒÂ‚Í‚ ‚é‚æ‚ËH
-	//–¼‘Oæ“¾
+	ASSERT( RefString( "Animation" ) == e.name() ); //ã‚¢ãƒ‹ãƒ¡ã ã‚ˆã­ï¼Ÿ
+	ASSERT( e.childNumber() > 0 ); //ãƒãƒ¼ãƒ‰ä¸€å€‹ã¯ã‚ã‚‹ã‚ˆã­ï¼Ÿ
+	//åå‰å–å¾—
 	int an = e.attributeNumber();
 	for ( int i = 0; i < an; ++i ){
 		ConstAttribute a = e.attribute( i );
@@ -89,4 +89,3 @@ Animation::Animation( Impl* impl ) : mImpl( impl ){
 
 } //namespace Scene
 } //namespace GameLib
-

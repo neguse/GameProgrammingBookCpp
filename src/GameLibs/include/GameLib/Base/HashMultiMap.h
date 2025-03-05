@@ -7,55 +7,55 @@
 
 namespace GameLib{
 
-///���E�e�ʎw��n�b�V���e�[�u��
+///限界容量指定ハッシュテーブル
 /*!
-�n�b�V���֐��͑S�r�b�g�̘a���e�[�u���T�C�Y�ŏ�]�����P���ȕ����ł���B
-�S�r�b�g�ł��邽�߁A�N���X�̃T�C�Y���傫���ƃR�X�g���傫���Ȃ�\���������B
-�Ȃ��A����L�[�����v�f���ǉ�����Bfind�͓����L�[�������̂̐擪��Ԃ��B
-��������getNext�ňقȂ�L�[�̂��̂��Ԃ�܂Ń��[�v�ŉ񂷂��ƁB
-�������A�K��isEnd()���Ă�Ŕ͈͊O�łȂ����Ƃ��m�F���邱�ƁB
+ハッシュ関数は全ビットの和をテーブルサイズで剰余を取る単純な方式である。
+全ビットであるため、クラスのサイズが大きいとコストが大きくなる可能性が高い。
+なお、同一キーをもつ要素も追加する。findは同じキーを持つものの先頭を返す。
+そこからgetNextで異なるキーのものが返るまでループで回すこと。
+ただし、必ずisEnd()を呼んで範囲外でないことを確認すること。
 */
 template< class Key, class Value, class H = Hash< Key > > class HashMultiMap{
 public:
-	///�f�t�H���g�BsetCapacity���Ă΂Ȃ��Ɠ����Ȃ�
+	///デフォルト。setCapacityを呼ばないと動かない
 	HashMultiMap();
-	///�ő�e�ʂ��w��B�e�[�u���T�C�Y�̓f�t�H���g��capacity�ȏ�̍ŏ��̑f���B
+	///最大容量を指定。テーブルサイズはデフォルトでcapacity以上の最小の素数。
 	explicit HashMultiMap( int capacity, int tableSize = 0 );
 	~HashMultiMap();
-	///�Ċm�ہB���g�������ԂŌĂԂ�assert�Bclear()����B
+	///再確保。中身がある状態で呼ぶとassert。clear()しろ。
 	void setCapacity( int capacity, int tableSize = 0 );
-	///�ő�e�ʎ擾
+	///最大容量取得
 	int capacity() const;
-	///���݂̗v�f���擾
+	///現在の要素数取得
 	int size() const;
-	///�S���
+	///全解放
 	void clear();
-	///�ǉ��B�ǉ������ꏊ��Ԃ��B
+	///追加。追加した場所を返す。
 	int add( const Key&, const Value& );
-	///�ǉ��B�ǉ������ꏊ��Ԃ��B�l��getValue���Čォ�珑�����ނ��ƁB
+	///追加。追加した場所を返す。値はgetValueして後から書き込むこと。
 	int add( const Key& );
-	///�����B�Ԃ�̂̓C�e���[�^�B����L�[�̐擪�B
+	///検索。返るのはイテレータ。同一キーの先頭。
 	int find( const Key& ) const;
-	///�C�e���[�^���w�肵�č폜�B�폜�����true��Ԃ��B
+	///イテレータを指定して削除。削除すればtrueを返す。
 	bool remove( int position );
-	///�L�[�擾(���������͋֎~�Ȃ̂�const�̂�)
+	///キー取得(書き換えは禁止なのでconstのみ)
 	const Key* key( int position ) const;
-	///�l�擾(const)
+	///値取得(const)
 	const Value* value( int position ) const;
-	///�l�擾(��const)
+	///値取得(非const)
 	Value* value( int position );
-	//�ȉ��P���ȃ��X�g�Ƃ��ăA�N�Z�X����ۂ̃C���^�[�t�F�C�X�B�������Е���
+	//以下単純なリストとしてアクセスする際のインターフェイス。ただし片方向
 	int next( int position ) const;
 	int first() const;
-	///position�����[������B
+	///positionが末端か判定。
 	bool isEnd( int position ) const;
-	///�P�Ȃ�z��ɕϊ��B�O������size()�����T�C�Y��new�����̈��n�����ƁB
+	///単なる配列に変換。前もってsize()したサイズでnewした領域を渡すこと。
 	void copyTo( Value* ) const;
-	///Array�ɃR�s�[�B��̂��̂�n���B
+	///Arrayにコピー。空のものを渡せ。
 	void copyTo( Array< Value >* ) const;
 private:
-	void operator=( const HashMultiMap& ); //����֎~
-	HashMultiMap( const HashMultiMap& ); //�R�s�[�R���X�g���N�^�֎~
+	void operator=( const HashMultiMap& ); //代入禁止
+	HashMultiMap( const HashMultiMap& ); //コピーコンストラクタ禁止
 
 	int* mNexts;
 	Key* mKeys;
@@ -67,7 +67,6 @@ private:
 };
 
 } //namespace GameLib
-#include "GameLib/Base/Impl/HashMultiMapImpl.h" //���g�͂��̒�
+#include "GameLib/Base/Impl/HashMultiMapImpl.h" //中身はこの中
 
 #endif
-

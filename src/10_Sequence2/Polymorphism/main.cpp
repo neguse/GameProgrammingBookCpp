@@ -38,6 +38,6 @@ int main(){
 	c0->foo();
 	c1->foo();
 
-	while ( true ); //–³ŒÀƒ‹[ƒv
+	while ( true ); //ç„¡é™ãƒ«ãƒ¼ãƒ—
 	return 0;
 }

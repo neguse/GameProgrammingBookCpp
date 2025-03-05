@@ -169,4 +169,3 @@ void IBinaryStream::setPosition( int p ){
 }
 
 } //namespace GameLib
-

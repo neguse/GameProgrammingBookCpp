@@ -5,7 +5,7 @@ namespace GameLib{
 		unsigned* vram = videoMemory();
 		static unsigned i;
 		vram[ i ] += i * 100;
-		i += 9973; //1–œˆÈ‰ºÅ‘å‚Ì‘f”
+		i += 9973; //1ä¸‡ä»¥ä¸‹æœ€å¤§ã®ç´ æ•°
 		i %= ( width() * height() );
 	}
 }

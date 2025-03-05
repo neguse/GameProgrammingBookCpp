@@ -26,7 +26,7 @@ const char* File::getData() const {
 	return mData;
 }
 
-//unsignedæ‚èo‚µ
+//unsignedå–ã‚Šå‡ºã—
 unsigned File::getUnsigned( int p ) const {
 	const unsigned char* up;
 	up = reinterpret_cast< const unsigned char* >( mData );

@@ -10,9 +10,9 @@ using namespace GameLib::PseudoXml;
 Animation::Animation( Element& e ) : 
 mNodes( 0 ),
 mNodeNumber( 0 ){
-	ASSERT( string( "Animation" ) == e.name() ); //ƒAƒjƒ‚¾‚æ‚ËH
-	ASSERT( e.childNumber() > 0 ); //ƒm[ƒhˆêŒÂ‚Í‚ ‚é‚æ‚ËH
-	//–¼‘Oæ“¾
+	ASSERT( string( "Animation" ) == e.name() ); //ã‚¢ãƒ‹ãƒ¡ã ã‚ˆã­ï¼Ÿ
+	ASSERT( e.childNumber() > 0 ); //ãƒãƒ¼ãƒ‰ä¸€å€‹ã¯ã‚ã‚‹ã‚ˆã­ï¼Ÿ
+	//åå‰å–å¾—
 	int an = e.attributeNumber();
 	const string nameStr( "name" );
 	for ( int i = 0; i < an; ++i ){
@@ -48,4 +48,3 @@ const AnimationNode* Animation::node( const char* name ) const {
 const string* Animation::name() const {
 	return &mName;
 }
-

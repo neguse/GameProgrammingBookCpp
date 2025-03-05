@@ -6,48 +6,48 @@
 
 namespace GameLib{
 
-///new‚ÌƒI[ƒo[‚Öƒbƒh‚É‘Ï‚¦‚ç‚ê‚È‚¢‚¹‚Á‚©‚¿‚³‚ñ‚Ì‚½‚ß‚Ì‘o•ûŒüƒŠƒXƒg
+///newã®ã‚ªãƒ¼ãƒãƒ¼ã¸ãƒƒãƒ‰ã«è€ãˆã‚‰ã‚Œãªã„ã›ã£ã‹ã¡ã•ã‚“ã®ãŸã‚ã®åŒæ–¹å‘ãƒªã‚¹ãƒˆ
 template< class T > class List{
 public:
 	List();
 	explicit List( int capacity );
 	~List();
-	///Œã‚©‚çƒTƒCƒYw’èB’†g‚ª‚ ‚é‚Æ€‚ÊBclear()‚µ‚æ‚¤B
+	///å¾Œã‹ã‚‰ã‚µã‚¤ã‚ºæŒ‡å®šã€‚ä¸­èº«ãŒã‚ã‚‹ã¨æ­»ã¬ã€‚clear()ã—ã‚ˆã†ã€‚
 	void setCapacity( int capacity );
 	int capacity() const;
-	//’Ç‰Á ‘S‚ÄêŠ‚ğ•Ô‚·
-	int addBefore( int position, const T& value ); //w’èêŠ‚Ì‘O‚É’Ç‰Á
-	int addAfter( int position, const T& value ); //w’èêŠ‚ÌŒã‚É’Ç‰Á
-	int addHead( const T& value ); //æ“ª’Ç‰Á
-	int addTail( const T& value ); //––”ö’Ç‰Á
-	//íœ
-	void remove( int position ); //w’èêŠ‚ğíœ
-	void removeHead(); //æ“ª‚ğíœ
-	void removeTail(); //––”ö‚ğíœ
-	void clear(); //‘S•”íœ
-	///’læ“¾(const)
+	//è¿½åŠ  å…¨ã¦å ´æ‰€ã‚’è¿”ã™
+	int addBefore( int position, const T& value ); //æŒ‡å®šå ´æ‰€ã®å‰ã«è¿½åŠ 
+	int addAfter( int position, const T& value ); //æŒ‡å®šå ´æ‰€ã®å¾Œã«è¿½åŠ 
+	int addHead( const T& value ); //å…ˆé ­è¿½åŠ 
+	int addTail( const T& value ); //æœ«å°¾è¿½åŠ 
+	//å‰Šé™¤
+	void remove( int position ); //æŒ‡å®šå ´æ‰€ã‚’å‰Šé™¤
+	void removeHead(); //å…ˆé ­ã‚’å‰Šé™¤
+	void removeTail(); //æœ«å°¾ã‚’å‰Šé™¤
+	void clear(); //å…¨éƒ¨å‰Šé™¤
+	///å€¤å–å¾—(const)
 	const T* value( int position ) const;
-	///’læ“¾(”ñconst)
+	///å€¤å–å¾—(éconst)
 	T* value( int position );
-	///––’[‚©‚Ç‚¤‚©‚ÍisEnd()‚ÅŠm”F‚¹‚æ
+	///æœ«ç«¯ã‹ã©ã†ã‹ã¯isEnd()ã§ç¢ºèªã›ã‚ˆ
 	int next( int position ) const;
-	///––’[‚©‚Ç‚¤‚©‚ÍisEnd()‚ÅŠm”F‚¹‚æ
+	///æœ«ç«¯ã‹ã©ã†ã‹ã¯isEnd()ã§ç¢ºèªã›ã‚ˆ
 	int previous( int position ) const;
 	int first() const;
 	int last() const;
-	///position‚ª––’[‚©”»’èB
+	///positionãŒæœ«ç«¯ã‹åˆ¤å®šã€‚
 	bool isEnd( int position ) const;
-	///’P‚È‚é”z—ñ‚É•ÏŠ·B‘O‚à‚Á‚Äsize()‚µ‚½ƒTƒCƒY‚Ånew‚µ‚½—Ìˆæ‚ğ“n‚·‚±‚ÆB
+	///å˜ãªã‚‹é…åˆ—ã«å¤‰æ›ã€‚å‰ã‚‚ã£ã¦size()ã—ãŸã‚µã‚¤ã‚ºã§newã—ãŸé ˜åŸŸã‚’æ¸¡ã™ã“ã¨ã€‚
 	void copyTo( T* ) const;
-	///Array‚ÉƒRƒs[B‹ó‚Ì‚à‚Ì‚ğ“n‚¹B
+	///Arrayã«ã‚³ãƒ”ãƒ¼ã€‚ç©ºã®ã‚‚ã®ã‚’æ¸¡ã›ã€‚
 	void copyTo( Array< T >* ) const;
 private:
 	struct Node{
 		int mNext;
 		int mPrev;
 	};
-	List( const List& ); //ƒRƒs[ƒRƒ“ƒXƒgƒ‰ƒNƒ^‹Ö~
-	void operator=( const List& ); //‘ã“ü‹Ö~
+	List( const List& ); //ã‚³ãƒ”ãƒ¼ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ç¦æ­¢
+	void operator=( const List& ); //ä»£å…¥ç¦æ­¢
 
 	T* mValues;
 	Node* mNodes;
@@ -57,7 +57,6 @@ private:
 };
 
 } //namespace GameLib
-#include "GameLib/Base/Impl/ListImpl.h" //’†g‚Í‚±‚Ì’†
+#include "GameLib/Base/Impl/ListImpl.h" //ä¸­èº«ã¯ã“ã®ä¸­
 
 #endif
-

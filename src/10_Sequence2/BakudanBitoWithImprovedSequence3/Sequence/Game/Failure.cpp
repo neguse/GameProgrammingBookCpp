@@ -21,20 +21,20 @@ Failure::~Failure(){
 
 Base* Failure::update( Parent* parent ){
 	Base* next = this;
-	if ( mCount == 60 ){ //1•b‘Ò‚Â 
+	if ( mCount == 60 ){ //1ç§’å¾…ã¤ 
 		if ( parent->lifeNumber() == 0 ){
 			next = new GameOver;
 		}else{
 			next = new Ready;
 		}
 	}
-	//•`‰æ
-	//‚Ü‚¸ƒQ[ƒ€‰æ–Ê‚ğ•`‰æ
+	//æç”»
+	//ã¾ãšã‚²ãƒ¼ãƒ ç”»é¢ã‚’æç”»
 	parent->drawState();
-	//ã‚Éj‚¢‚ÌƒƒbƒZ[ƒW‚ğ•`‰æ
+	//ä¸Šã«ç¥ã„ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æç”»
 	mImage->draw();
-	//ƒNƒŠƒA[‚Æš‚ğ•`‚­
-	Framework::instance().drawDebugString( 0, 0, "±°¯!" );
+	//ã‚¯ãƒªã‚¢ãƒ¼ã¨å­—ã‚’æã
+	Framework::instance().drawDebugString( 0, 0, "ï½±ï½°ï½¯!" );
 
 	++mCount;
 

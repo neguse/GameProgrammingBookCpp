@@ -27,7 +27,7 @@ mChildren( 0 ),
 mChildNumber( childNumber ),
 mAnimation( 0 ){
 	mChildren = new Node*[ mChildNumber ];
-	//”O‚Ì‚½‚ß0–„‚ßB€‚ñ‚Å‚­‚ê‚é‚¾‚ë‚¤
+	//å¿µã®ãŸã‚0åŸ‹ã‚ã€‚æ­»ã‚“ã§ãã‚Œã‚‹ã ã‚ã†
 	for ( int i = 0; i < mChildNumber; ++i ){
 		mChildren[ i ] = 0;
 	}
@@ -63,9 +63,9 @@ const Vector3& ambient ) const {
 			ambient,
 			mColor );
 	}
-	//q‚Öó‚¯Œp‚®
+	//å­ã¸å—ã‘ç¶™ã
 	for ( int i = 0; i < mChildNumber; ++i ){
-		ASSERT( mChildren[ i ] ); //0‚ª“ü‚Á‚Ä‚½‚çˆÙíB
+		ASSERT( mChildren[ i ] ); //0ãŒå…¥ã£ã¦ãŸã‚‰ç•°å¸¸ã€‚
 		mChildren[ i ]->draw(
 			pvm,
 			wm,
@@ -118,7 +118,7 @@ void Node::setChildNumber( int n ){
 	}
 	mChildNumber = n;
 	mChildren = new Node*[ mChildNumber ];
-	//”O‚Ì‚½‚ß0–„‚ßB€‚ñ‚Å‚­‚ê‚é‚¾‚ë‚¤
+	//å¿µã®ãŸã‚0åŸ‹ã‚ã€‚æ­»ã‚“ã§ãã‚Œã‚‹ã ã‚ã†
 	for ( int i = 0; i < mChildNumber; ++i ){
 		mChildren[ i ] = 0;
 	}
@@ -149,4 +149,3 @@ void Node::update( double time ){
 void Node::setAnimation( const AnimationNode* an ){
 	mAnimation = an;
 }
-

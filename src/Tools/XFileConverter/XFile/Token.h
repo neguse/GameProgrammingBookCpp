@@ -7,7 +7,7 @@ namespace XFile{
 
 using namespace GameLib;
 
-//ƒg[ƒNƒ“
+//ãƒˆãƒ¼ã‚¯ãƒ³
 class Token{
 public:
 	enum Type{

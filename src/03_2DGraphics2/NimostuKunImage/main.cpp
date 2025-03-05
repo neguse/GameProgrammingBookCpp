@@ -4,13 +4,13 @@ using namespace GameLib;
 #include "State.h"
 #include "File.h"
 
-//ŠÖ”ƒvƒƒgƒ^ƒCƒv
+//é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 void mainLoop();
 
-//ƒOƒ[ƒoƒ‹•Ï”
+//ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 State* gState = 0;
 
-//ƒ†[ƒUÀ‘•ŠÖ”B’†g‚ÍmainLoop()‚ÉŠÛ“Š‚°
+//ãƒ¦ãƒ¼ã‚¶å®Ÿè£…é–¢æ•°ã€‚ä¸­èº«ã¯mainLoop()ã«ä¸¸æŠ•ã’
 namespace GameLib{
 	void Framework::update(){
 		mainLoop();
@@ -18,7 +18,7 @@ namespace GameLib{
 }
 
 void mainLoop(){
-	//~ƒ{ƒ^ƒ“‰Ÿ‚³‚ê‚Ä‚éH
+	//Ã—ãƒœã‚¿ãƒ³æŠ¼ã•ã‚Œã¦ã‚‹ï¼Ÿ
 	if ( Framework::getInstance().isEndRequested() ){
 		if ( gState ){
 			delete gState;
@@ -26,46 +26,45 @@ void mainLoop(){
 		}
 		return;
 	}
-	//Å‰‚ÌƒtƒŒ[ƒ€‚Í‰Šú‰»BÅ‰‚Ìó‘Ô‚ğ•`‰æ‚µ‚ÄI‚í‚èB
+	//æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¯åˆæœŸåŒ–ã€‚æœ€åˆã®çŠ¶æ…‹ã‚’æç”»ã—ã¦çµ‚ã‚ã‚Šã€‚
 	if ( !gState ){ 
 		File file( "stageData.txt" );
-		if ( !( file.getData() ) ){ //ƒf[ƒ^‚È‚¢I
+		if ( !( file.getData() ) ){ //ãƒ‡ãƒ¼ã‚¿ãªã„ï¼
 			cout << "stage file could not be read." << endl;
 			return;
 		}
 		gState = new State( file.getData(), file.getSize() );
-		//‰‰ñ•`‰æ
+		//åˆå›æç”»
 		gState->draw();
-		return; //‚»‚Ì‚Ü‚ÜI‚í‚é
+		return; //ãã®ã¾ã¾çµ‚ã‚ã‚‹
 	}
 	bool cleared = false;
-	//ƒƒCƒ“ƒ‹[ƒv
-	//ƒNƒŠƒAƒ`ƒFƒbƒN
+	//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+	//ã‚¯ãƒªã‚¢ãƒã‚§ãƒƒã‚¯
 	if ( gState->hasCleared() ){
 		cleared = true;
 	}
-	//“ü—Íæ“¾
-	cout << "a:left s:right w:up z:down. command?" << endl; //‘€ìà–¾
+	//å…¥åŠ›å–å¾—
+	cout << "a:left s:right w:up z:down. command?" << endl; //æ“ä½œèª¬æ˜
 	char input;
 	cin >> input;
-	//I—¹”»’è
+	//çµ‚äº†åˆ¤å®š
 	if ( input == 'q' ){
 		delete gState;
 		gState = 0;
 		Framework::getInstance().requestEnd();
 		return;
 	}
-	//XV
+	//æ›´æ–°
 	gState->update( input );
-	//•`‰æ
+	//æç”»
 	gState->draw();
 
 	if ( cleared ){
-		//j‚¢‚ÌƒƒbƒZ[ƒW
+		//ç¥ã„ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		cout << "Congratulation! you win." << endl;
 		delete gState;
 		gState = 0;
 	}
 }
-
 

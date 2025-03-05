@@ -13,7 +13,7 @@ mTexture( 0 ){
 	Framework::instance().createTexture(
 		&mTexture,
 		filename );
-	//ƒTƒCƒY‚ğ‚à‚ç‚¤B–{•¶‚Åà–¾‚µ‚Ä‚È‚¢‚ªA‚±‚¤‚¢‚¤ŠÖ”‚ª—pˆÓ‚µ‚Ä‚ ‚é‚Ì‚¾B
+	//ã‚µã‚¤ã‚ºã‚’ã‚‚ã‚‰ã†ã€‚æœ¬æ–‡ã§èª¬æ˜ã—ã¦ãªã„ãŒã€ã“ã†ã„ã†é–¢æ•°ãŒç”¨æ„ã—ã¦ã‚ã‚‹ã®ã ã€‚
 	Framework::instance().getTextureSizes(
 		mTexture,
 		&mTextureWidth,
@@ -35,7 +35,7 @@ int Image::height() const {
 	return mHeight;
 }
 
-//ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒh•t‚«
+//ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‰ä»˜ã
 void Image::draw(
 int dstX, 
 int dstY, 
@@ -43,17 +43,17 @@ int srcX,
 int srcY, 
 int width, 
 int height ) const {
-	//x,y‚Ì”ÍˆÍ‚ğŒvZ
+	//x,yã®ç¯„å›²ã‚’è¨ˆç®—
 	double x0 = static_cast< double >( dstX );
 	double y0 = static_cast< double >( dstY );
 	double x1 = x0 + static_cast< double >( width );
 	double y1 = y0 + static_cast< double >( height );
-	//ˆÚ“®Œã’¸“_
+	//ç§»å‹•å¾Œé ‚ç‚¹
 	Vector2 p0( x0, y0 );
 	Vector2 p1( x1, y0 );
 	Vector2 p2( x0, y1 );
 	Vector2 p3( x1, y1 );
-	//ƒeƒNƒXƒ`ƒƒÀ•W¶¬
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™ç”Ÿæˆ
 	double rcpTw = 1.0 / static_cast< double >( mTextureWidth );
 	double rcpTh = 1.0 / static_cast< double >( mTextureHeight );
 	double u0 = static_cast< double >( srcX ) * rcpTw;
@@ -66,12 +66,12 @@ int height ) const {
 	Vector2 t3( u1, v1 );
 	
 	Framework f = Framework::instance();
-	//ƒeƒNƒXƒ`ƒƒƒZƒbƒg
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆ
 	f.setTexture( mTexture );
-	//üŒ`‡¬
+	//ç·šå½¢åˆæˆ
 	f.setBlendMode( Framework::BLEND_LINEAR );
-	//•`‰æ
-	//3D”z—ñ‚ÉƒRƒs[(drawTriangle3D‚ğŒÄ‚Ô‚Ì‚Å)
+	//æç”»
+	//3Dé…åˆ—ã«ã‚³ãƒ”ãƒ¼(drawTriangle3Dã‚’å‘¼ã¶ã®ã§)
 	double p0_3[ 3 ];
 	double p1_3[ 3 ];
 	double p2_3[ 3 ];
@@ -88,4 +88,3 @@ int height ) const {
 void Image::draw() const {
 	draw( 0, 0, 0, 0, mWidth, mHeight );
 }
-

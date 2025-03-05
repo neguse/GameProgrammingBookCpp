@@ -15,10 +15,10 @@ namespace Scene{
 
 class Animation::Impl : public ReferenceType{
 public:
-	//���̊֐��̓R���e�i���g���̂ŁA�C���N���[�h���[�v������邽�߂�Animation.cpp�ɂ����Ă���B
+	//この関数はコンテナを使うので、インクルードループを避けるためにAnimation.cppにおいてある。
 	Impl( PseudoXml::ConstElement&, Container::Impl& );
 	~Impl(){
-		mName = 0; //�R���e�i�������Ă��镶����Ȃ̂ł����ł͎Q�Ƃ��͂�������
+		mName = 0; //コンテナが持っている文字列なのでここでは参照をはずすだけ
 		for ( int i = 0; i < mNodeNumber; ++i ){
 			mNodes[ i ].~AnimationNode();
 		}
@@ -52,4 +52,3 @@ private:
 } //namespace GameLib
 
 #endif
-

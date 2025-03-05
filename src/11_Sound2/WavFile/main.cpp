@@ -10,7 +10,7 @@ namespace GameLib{
 		if ( gFirstFrame ){
 			gFirstFrame = false;
 			File file( "dokaan.wav" );
-			//ƒwƒbƒ_‚ğ“Ç‚İ‚à‚µ‚È‚¢‚ÅŠÛ‚²‚Æ‘—‚è‚Â‚¯‚éB
+			//ãƒ˜ãƒƒãƒ€ã‚’èª­ã¿ã‚‚ã—ãªã„ã§ä¸¸ã”ã¨é€ã‚Šã¤ã‘ã‚‹ã€‚
 			const short* wave = reinterpret_cast< const short* >( file.getData() + 60 );
 			int sampleN = ( file.getSize() - 60 ) / 2;
 			playSound( wave, sampleN );

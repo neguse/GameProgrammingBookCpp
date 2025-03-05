@@ -175,4 +175,3 @@ void Vector2::setMax( const Vector2& a, const Vector2& b ){
 
 } //namespace Math
 } //namespace GameLib
-

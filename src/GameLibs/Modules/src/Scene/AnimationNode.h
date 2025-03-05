@@ -15,10 +15,10 @@ namespace Scene{
 
 class AnimationNode{
 public:
-	//���̊֐��̓R���e�i���g���̂ŁA�C���N���[�h���[�v������邽�߂�AnimationNode.cpp�ɂ����Ă���B
+	//この関数はコンテナを使うので、インクルードループを避けるためにAnimationNode.cppにおいてある。
 	AnimationNode( PseudoXml::ConstElement&, Container::Impl& );
 	~AnimationNode(){
-		mName = 0; //�R���e�i�������Ă���̂ŎQ�Ƃ��O������
+		mName = 0; //コンテナが持っているので参照を外すだけ
 		for ( int i = 0; i < mCurveNumber; ++i ){
 			mCurves[ i ].~Curve();
 		}
@@ -66,4 +66,3 @@ private:
 } //namespace GameLib
 
 #endif
-

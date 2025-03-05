@@ -5,15 +5,14 @@
 
 class Triangle{
 public:
-	//n“_‚Æü•ªƒxƒNƒ^
+	//å§‹ç‚¹ã¨ç·šåˆ†ãƒ™ã‚¯ã‚¿
 	bool isIntersect( const Vector3& lineBegin, const Vector3& lineVector ) const;
-	//ó‚¯æ‚Á‚½ˆÚ“®ƒxƒNƒ^‚Ì¬•ª‚Ì‚¤‚¿‘Šè‚É“–‚½‚ç‚È‚¢‚Å“®‚¯‚é¬•ª‚¾‚¯‚ğc‚·
+	//å—ã‘å–ã£ãŸç§»å‹•ãƒ™ã‚¯ã‚¿ã®æˆåˆ†ã®ã†ã¡ç›¸æ‰‹ã«å½“ãŸã‚‰ãªã„ã§å‹•ã‘ã‚‹æˆåˆ†ã ã‘ã‚’æ®‹ã™
 	void restrictMove( Vector3* moveVectorInOut, const Vector3& position ) const;
-	//ˆÊ’uİ’è
+	//ä½ç½®è¨­å®š
 	void setPosition( const Vector3& p0, const Vector3& p1, const Vector3& p2 );
 private:
-	Vector3 mPosition[ 3 ]; //3’¸“_
+	Vector3 mPosition[ 3 ]; //3é ‚ç‚¹
 };
 
 #endif
-

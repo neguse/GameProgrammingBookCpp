@@ -7,7 +7,7 @@ rm -rf $(find ./ -name "*~")
 rm -rf $(find ./ -name "*.suo")
 rm -rf $(find ./ -name "*.ncb")
 rm -rf $(find ./ -name "*.user")
-# à»â∫srcà»â∫Ç≈ÇÃÇ›
+# ‰ª•‰∏ãsrc‰ª•‰∏ã„Åß„ÅÆ„Åø
 rm -rf $(find ./ -name "*.lib")
 rm -rf $(find ./ -name "*.pdb")
 rm -rf $(find ./ -name "*.idb")

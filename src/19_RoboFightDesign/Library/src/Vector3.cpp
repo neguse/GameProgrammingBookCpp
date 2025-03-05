@@ -93,4 +93,3 @@ void Vector3::setMadd( const Vector3& a, double b, const Vector3& c ){
 	y = a.y * b + c.y;
 	z = a.z * b + c.z;
 }
-

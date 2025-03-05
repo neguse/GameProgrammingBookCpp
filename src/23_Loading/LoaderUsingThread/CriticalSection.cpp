@@ -14,4 +14,3 @@ void CriticalSection::enter(){
 void CriticalSection::leave(){
 	Threading::compareAndSwap( &mEntered, 0, mEntered );
 }
-

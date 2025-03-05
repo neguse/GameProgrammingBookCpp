@@ -16,7 +16,7 @@ class Animation{
 public:
 	Animation( GameLib::PseudoXml::Element& );
 	~Animation();
-	//ƒm[ƒh‚ğ‚à‚ç‚¤
+	//ãƒãƒ¼ãƒ‰ã‚’ã‚‚ã‚‰ã†
 	const AnimationNode* node( const char* name ) const;
 	const string* name() const;
 private:

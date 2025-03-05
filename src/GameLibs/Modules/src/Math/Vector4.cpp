@@ -72,4 +72,3 @@ float Vector4::operator[]( int i ) const {
 
 } //namespace Math
 } //namespace GameLib
-

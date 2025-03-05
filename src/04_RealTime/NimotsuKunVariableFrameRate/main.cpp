@@ -4,16 +4,16 @@ using namespace GameLib;
 #include "State.h"
 #include "File.h"
 
-//ŠÖ”ƒvƒƒgƒ^ƒCƒv
+//é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 void mainLoop();
 
-//ƒOƒ[ƒoƒ‹•Ï”
+//ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 State* gState = 0;
-const int gFrameInterval = 16; //16ƒ~ƒŠ•bB62.5fpsB
-unsigned gPreviousTime[ 10 ]; //10ƒtƒŒ[ƒ€•ª‚Ì‚ğ‹L˜^
-int gCounter = 0; //ƒƒCƒ“ƒ‹[ƒv‚ğ‰ñ‚Á‚½‰ñ”‚ğ”‚¦‚éƒJƒEƒ“ƒ^
+const int gFrameInterval = 16; //16ãƒŸãƒªç§’ã€‚62.5fpsã€‚
+unsigned gPreviousTime[ 10 ]; //10ãƒ•ãƒ¬ãƒ¼ãƒ åˆ†ã®æ™‚åˆ»ã‚’è¨˜éŒ²
+int gCounter = 0; //ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—ã‚’å›ã£ãŸå›æ•°ã‚’æ•°ãˆã‚‹ã‚«ã‚¦ãƒ³ã‚¿
 
-//ƒ†[ƒUÀ‘•ŠÖ”B’†g‚ÍmainLoop()‚ÉŠÛ“Š‚°
+//ãƒ¦ãƒ¼ã‚¶å®Ÿè£…é–¢æ•°ã€‚ä¸­èº«ã¯mainLoop()ã«ä¸¸æŠ•ã’
 namespace GameLib{
 	void Framework::update(){
 		mainLoop();
@@ -21,37 +21,37 @@ namespace GameLib{
 }
 
 void mainLoop(){
-	//ƒtƒŒ[ƒ€ƒŒ[ƒgˆê’è‰»ˆ—Bæ“¾Šª‚«–ß‚è‘Îô•t‚«
+	//ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆä¸€å®šåŒ–å‡¦ç†ã€‚å–å¾—æ™‚åˆ»å·»ãæˆ»ã‚Šå¯¾ç­–ä»˜ã
 	Framework f = Framework::instance();
-	//‘S—Í‚Å‰ñ‚é‚Æ‘¼‚ÌƒvƒƒOƒ‰ƒ€‚É–À˜f‚ª‚©‚©‚é‚Ì‚ÅA­‚µ‚¾‚¯Q‚é
+	//å…¨åŠ›ã§å›ã‚‹ã¨ä»–ã®ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã«è¿·æƒ‘ãŒã‹ã‹ã‚‹ã®ã§ã€å°‘ã—ã ã‘å¯ã‚‹
 	f.sleep( 1 );
-	//ƒtƒŒ[ƒ€ƒŒ[ƒgŒvZ
+	//ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆè¨ˆç®—
 	unsigned currentTime = f.time();
-	unsigned frameInterval = currentTime - gPreviousTime[ 9 ]; //update‚É“n‚·
+	unsigned frameInterval = currentTime - gPreviousTime[ 9 ]; //updateã«æ¸¡ã™
 	unsigned frameInterval10 = currentTime - gPreviousTime[ 0 ];
-	if ( gCounter % 60 == 0 ){ //60ƒtƒŒ[ƒ€‚Éˆê‰ñƒtƒŒ[ƒ€ƒŒ[ƒg•\¦
+	if ( gCounter % 60 == 0 ){ //60ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä¸€å›ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆè¡¨ç¤º
 		cout << "frameInterval:" << frameInterval10/10;
 		cout << " FrameRate:" << 10*1000/frameInterval10 << endl;
 	}
 	++gCounter;
-	//—š—ğXV
+	//å±¥æ­´æ›´æ–°
 	for ( int i = 0; i < 9; ++i ){
 		gPreviousTime[ i ] = gPreviousTime[ i + 1 ];
 	}
 	gPreviousTime[ 9 ] = currentTime;
 
-	//Å‰‚ÌƒtƒŒ[ƒ€‚Í‰Šú‰»B
+	//æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¯åˆæœŸåŒ–ã€‚
 	if ( !gState ){ 
 		File file( "stageData.txt" );
-		if ( !( file.getData() ) ){ //ƒf[ƒ^‚È‚¢I
+		if ( !( file.getData() ) ){ //ãƒ‡ãƒ¼ã‚¿ãªã„ï¼
 			cout << "stage file could not be read." << endl;
 			return;
 		}
 		gState = new State( file.getData(), file.getSize() );
 	}
 	bool cleared = false;
-	//ƒƒCƒ“ƒ‹[ƒv
-	//ƒNƒŠƒAƒ`ƒFƒbƒN
+	//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+	//ã‚¯ãƒªã‚¢ãƒã‚§ãƒƒã‚¯
 	if ( gState->hasCleared() ){
 		cleared = true;
 	}
@@ -66,18 +66,18 @@ void mainLoop(){
 	}else if ( f.isKeyOn( 'z' ) ){
 		dy += 1;
 	}
-	//XV
+	//æ›´æ–°
 	gState->update( dx, dy, frameInterval );
-	//•`‰æ
+	//æç”»
 	gState->draw();
 
 	if ( cleared ){
-		//j‚¢‚ÌƒƒbƒZ[ƒW
+		//ç¥ã„ã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
 		cout << "Congratulation! you win." << endl;
 		delete gState;
 		gState = 0;
 	}
-	//I—¹”»’è
+	//çµ‚äº†åˆ¤å®š
 	if ( f.isKeyOn( 'q' ) ){
 		f.requestEnd();
 	}
@@ -88,5 +88,4 @@ void mainLoop(){
 		}
 	}
 }
-
 

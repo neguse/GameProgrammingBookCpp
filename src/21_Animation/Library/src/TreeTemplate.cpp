@@ -15,9 +15,9 @@ using namespace GameLib::PseudoXml;
 TreeTemplate::TreeTemplate( Element& e, const GraphicsDatabase& db ) :
 mNodes( 0 ),
 mNodeNumber( 0 ){
-	ASSERT( string( "Tree" ) == e.name() ); //tree‚¾‚æ‚ËH
-	ASSERT( e.childNumber() == 1 ); //ƒ‹[ƒgƒm[ƒh‚ÍˆêŒÂ‚µ‚©‚È‚¢‚æ‚ËH‚Â‚¤‚©AˆêŒÂ‚Í‚ ‚é‚æ‚ËH
-	//–¼‘Oæ“¾
+	ASSERT( string( "Tree" ) == e.name() ); //treeã ã‚ˆã­ï¼Ÿ
+	ASSERT( e.childNumber() == 1 ); //ãƒ«ãƒ¼ãƒˆãƒãƒ¼ãƒ‰ã¯ä¸€å€‹ã—ã‹ãªã„ã‚ˆã­ï¼Ÿã¤ã†ã‹ã€ä¸€å€‹ã¯ã‚ã‚‹ã‚ˆã­ï¼Ÿ
+	//åå‰å–å¾—
 	int an = e.attributeNumber();
 	const string nameStr( "name" );
 	for ( int i = 0; i < an; ++i ){
@@ -26,11 +26,11 @@ mNodeNumber( 0 ){
 			mName = a.value();
 		}
 	}
-	//‚Ü‚¸ƒm[ƒh‚ğ”‚¦‚æ‚¤
+	//ã¾ãšãƒãƒ¼ãƒ‰ã‚’æ•°ãˆã‚ˆã†
 	Element c = e.child( 0 );
 	mNodeNumber = countNode( c, 0 );
 	mNodes = new NodeTemplate[ mNodeNumber ];
-	//ŠK‘w‚ğ\’z
+	//éšå±¤ã‚’æ§‹ç¯‰
 	build( c, db, 0 );
 }
 
@@ -38,20 +38,20 @@ TreeTemplate::~TreeTemplate(){
 	SAFE_DELETE_ARRAY( mNodes );
 }
 
-//Ä‹A
+//å†å¸°
 int TreeTemplate::countNode( Element& e, int n ){
-	++n; //©•ª‚Ì•ªƒvƒ‰ƒX
+	++n; //è‡ªåˆ†ã®åˆ†ãƒ—ãƒ©ã‚¹
 	int cn = e.childNumber();
 	for ( int i = 0; i < cn; ++i ){
 		Element c = e.child( i );
-		ASSERT( string( "Node" ) == c.name() ); //Node‚¾‚æ‚ËH
+		ASSERT( string( "Node" ) == c.name() ); //Nodeã ã‚ˆã­ï¼Ÿ
 		n = countNode( c, n );
 	}
 	return n;
 }
 
 int TreeTemplate::build( Element& e, const GraphicsDatabase& db, int nodePos ){
-	//©•ª‚Ìî•ñ‚ğ“ü‚ê‚Ü‚·
+	//è‡ªåˆ†ã®æƒ…å ±ã‚’å…¥ã‚Œã¾ã™
 	int an = e.attributeNumber();
 	NodeTemplate& node = mNodes[ nodePos ];
 	for ( int i = 0; i < an; ++i ){
@@ -70,15 +70,15 @@ int TreeTemplate::build( Element& e, const GraphicsDatabase& db, int nodePos ){
 		}
 	}
 	++nodePos;
-	ASSERT( nodePos <= mNodeNumber );  //‚ ‚è‚¦‚Ë‚¦
-	//q‹Ÿ‚Ìî•ñ‚ğ“ü‚ê‚Ü‚·
+	ASSERT( nodePos <= mNodeNumber );  //ã‚ã‚Šãˆã­ãˆ
+	//å­ä¾›ã®æƒ…å ±ã‚’å…¥ã‚Œã¾ã™
 	int cn = e.childNumber();
 	int elder = -1;
 	for ( int i = 0; i < cn; ++i ){
 		Element c = e.child( i );
-		if ( i == 0 ){ //0Å‰‚Ìq‚È‚ç©•ª‚ÉƒZƒbƒg
+		if ( i == 0 ){ //0æœ€åˆã®å­ãªã‚‰è‡ªåˆ†ã«ã‚»ãƒƒãƒˆ
 			node.mChild = nodePos;
-		}else{ //‚»‚êˆÈŠO‚È‚ç‘O‚Ìq‚É
+		}else{ //ãã‚Œä»¥å¤–ãªã‚‰å‰ã®å­ã«
 			mNodes[ elder ].mBrother = nodePos;
 		}
 		elder = nodePos;
@@ -98,4 +98,3 @@ const NodeTemplate* TreeTemplate::node( int i ) const {
 int TreeTemplate::nodeNumber() const {
 	return mNodeNumber;
 }
-

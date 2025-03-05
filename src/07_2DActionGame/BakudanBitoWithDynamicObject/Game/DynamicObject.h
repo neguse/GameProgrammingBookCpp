@@ -10,7 +10,7 @@ public:
 		TYPE_2P,
 		TYPE_ENEMY,
 
-		TYPE_NONE, //•s³’l
+		TYPE_NONE, //ä¸æ­£å€¤
 	};
 	DynamicObject();
 	void set( int x, int y, Type );
@@ -20,7 +20,7 @@ private:
 	Type mType;
 	int mX;
 	int mY;
-	//“Gê—p
+	//æ•µå°‚ç”¨
 	int mDirectionX;
 	int mDirectionY;
 };

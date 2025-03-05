@@ -5,24 +5,24 @@ using namespace GameLib;
 #include "File.h"
 #include "Image.h"
 
-//ŠÖ”ƒvƒƒgƒ^ƒCƒv
+//é–¢æ•°ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—
 void mainLoop();
-void game(); //ƒQ[ƒ€ƒ‹[ƒv
-void title(); //ƒ^ƒCƒgƒ‹‰æ–Êƒ‹[ƒv
+void game(); //ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—
+void title(); //ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ãƒ«ãƒ¼ãƒ—
 
-//ƒV[ƒPƒ“ƒX—ñ‹“
+//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ—æŒ™
 enum Sequence{
 	SEQUENCE_GAME,
 	SEQUENCE_TITLE,
 };
 
-//ƒOƒ[ƒoƒ‹•Ï”
-State* gState = 0; //ƒQ[ƒ€ó‘Ô
-Image* gTitleImage = 0; //ƒ^ƒCƒgƒ‹‰æ–Ê‰æ‘œ
-Sequence gSequence = SEQUENCE_TITLE; //ƒV[ƒPƒ“ƒX”Ô†
+//ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
+State* gState = 0; //ã‚²ãƒ¼ãƒ çŠ¶æ…‹
+Image* gTitleImage = 0; //ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ç”»åƒ
+Sequence gSequence = SEQUENCE_TITLE; //ã‚·ãƒ¼ã‚±ãƒ³ã‚¹ç•ªå·
 int gCounter = 0;
 
-//ƒ†[ƒUÀ‘•ŠÖ”B’†g‚ÍmainLoop()‚ÉŠÛ“Š‚°
+//ãƒ¦ãƒ¼ã‚¶å®Ÿè£…é–¢æ•°ã€‚ä¸­èº«ã¯mainLoop()ã«ä¸¸æŠ•ã’
 namespace GameLib{
 	void Framework::update(){
 		mainLoop();
@@ -30,16 +30,16 @@ namespace GameLib{
 }
 
 void mainLoop(){
-	//ƒtƒŒ[ƒ€ƒŒ[ƒg’²®
+	//ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆèª¿æ•´
 	Framework f = Framework::instance();
-	f.setFrameRate( 60 ); //ˆê‰ñŒÄ‚×‚Î‚¢‚¢‚Ì‚¾‚ª–Ê“|‚È‚Ì‚ÅŒÄ‚ñ‚Å‚µ‚Ü‚¤B
+	f.setFrameRate( 60 ); //ä¸€å›å‘¼ã¹ã°ã„ã„ã®ã ãŒé¢å€’ãªã®ã§å‘¼ã‚“ã§ã—ã¾ã†ã€‚
 
-	if ( gCounter % 60 == 0 ){ //60ƒtƒŒ[ƒ€‚Éˆê‰ñƒtƒŒ[ƒ€ƒŒ[ƒg•\¦
+	if ( gCounter % 60 == 0 ){ //60ãƒ•ãƒ¬ãƒ¼ãƒ ã«ä¸€å›ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆè¡¨ç¤º
 		cout << " FrameRate:" << f.frameRate() << endl;
 	}
 	++gCounter;
 
-	//ƒV[ƒPƒ“ƒX•ªŠò
+	//ã‚·ãƒ¼ã‚±ãƒ³ã‚¹åˆ†å²
 	switch ( gSequence ){
 		case SEQUENCE_GAME: 
 			game();
@@ -48,7 +48,7 @@ void mainLoop(){
 			title();
 			break;
 	}
-	//I—¹”»’è(q‚ª‰Ÿ‚³‚ê‚½‚©Aƒ}ƒEƒX‚Å~ƒ{ƒ^ƒ“‚ª’@‚©‚ê‚½‚©)
+	//çµ‚äº†åˆ¤å®š(qãŒæŠ¼ã•ã‚ŒãŸã‹ã€ãƒã‚¦ã‚¹ã§Ã—ãƒœã‚¿ãƒ³ãŒå©ã‹ã‚ŒãŸã‹)
 	if ( f.isKeyOn( 'q' ) ){
 		f.requestEnd();
 	}
@@ -59,24 +59,24 @@ void mainLoop(){
 	f.sleep(10);
 }
 
-//ƒQ[ƒ€ƒ‹[ƒvB‘O‚ÌƒTƒ“ƒvƒ‹‚Ü‚Å‚ÌGameLoop()‚Ì‘å”¼‚ğ‚±‚Á‚¿‚ÉˆÚA‚·‚éB
+//ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—ã€‚å‰ã®ã‚µãƒ³ãƒ—ãƒ«ã¾ã§ã®GameLoop()ã®å¤§åŠã‚’ã“ã£ã¡ã«ç§»æ¤ã™ã‚‹ã€‚
 void game(){
-	//Å‰‚ÌƒtƒŒ[ƒ€‚Í‰Šú‰»B
+	//æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¯åˆæœŸåŒ–ã€‚
 	if ( !gState ){ 
 		File file( "stageData.txt" );
-		if ( !( file.data() ) ){ //ƒf[ƒ^‚È‚¢I
+		if ( !( file.data() ) ){ //ãƒ‡ãƒ¼ã‚¿ãªã„ï¼
 			cout << "stage file could not be read." << endl;
 			return;
 		}
 		gState = new State( file.data(), file.size() );
 	}
 	bool cleared = false;
-	//ƒƒCƒ“ƒ‹[ƒv
-	//ƒNƒŠƒAƒ`ƒFƒbƒN
+	//ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒ—
+	//ã‚¯ãƒªã‚¢ãƒã‚§ãƒƒã‚¯
 	if ( gState->hasCleared() ){
 		cleared = true;
 	}
-	//“ü—Íæ“¾
+	//å…¥åŠ›å–å¾—
 	Framework f = Framework::instance();
 	int dx = 0;
 	int dy = 0;
@@ -89,12 +89,12 @@ void game(){
 	}else if ( f.isKeyOn( 'z' ) ){
 		dy += 1;
 	}
-	//XV
+	//æ›´æ–°
 	gState->update( dx, dy );
-	//•`‰æ
+	//æç”»
 	gState->draw();
 
-	//ƒNƒŠƒA‚µ‚½‚È‚çŒãn––‚µ‚Äƒ^ƒCƒgƒ‹‰æ–Ê‚Ö
+	//ã‚¯ãƒªã‚¢ã—ãŸãªã‚‰å¾Œå§‹æœ«ã—ã¦ã‚¿ã‚¤ãƒˆãƒ«ç”»é¢ã¸
 	if ( cleared ){
 		gSequence = SEQUENCE_TITLE;
 		SAFE_DELETE( gState );
@@ -102,11 +102,11 @@ void game(){
 }
 
 void title(){
-	//Å‰‚ÌƒtƒŒ[ƒ€‚Í‰Šú‰»B
+	//æœ€åˆã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¯åˆæœŸåŒ–ã€‚
 	if ( !gTitleImage ){
 		gTitleImage = new Image( "title.dds" );
 	}
-	//“ü—Íæ“¾
+	//å…¥åŠ›å–å¾—
 	if ( Framework::instance().isKeyOn( ' ' ) ){
 		gSequence = SEQUENCE_GAME;
 		SAFE_DELETE( gTitleImage );
@@ -114,4 +114,3 @@ void title(){
 	}
 	gTitleImage->draw( 0, 0, 0, 0, gTitleImage->width(), gTitleImage->height() );
 }
-

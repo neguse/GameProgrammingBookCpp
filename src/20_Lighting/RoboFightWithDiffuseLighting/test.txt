@@ -35,4 +35,3 @@
 	indexBuffer="ib"
 	blend="opaque">
 </Batch>
-

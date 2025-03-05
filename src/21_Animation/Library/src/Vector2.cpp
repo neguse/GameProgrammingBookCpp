@@ -71,4 +71,3 @@ double Vector2::squareLength() const {
 double Vector2::length() const {
 	return sqrt( squareLength() );
 }
-

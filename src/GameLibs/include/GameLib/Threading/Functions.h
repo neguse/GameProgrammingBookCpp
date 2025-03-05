@@ -11,4 +11,3 @@ unsigned getCurrentThreadId();
 } //namespace GameLib
 
 #endif
-

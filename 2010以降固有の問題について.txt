@@ -1,29 +1,29 @@
-VisualStudio2010�ȍ~�ɑΉ�����ۂɁA�ꕔ�s���S�ȏ���A
-�ύX���������_������܂��B
+VisualStudio2010以降に対応する際に、一部不完全な所や、
+変更を加えた点があります。
 
-0.sin,cos���̌Ăяo��
+0.sin,cos等の呼び出し
 
-C/C++�W�����C�u�������g�����ꍇ�A
-�W����sin(),cos()���ƁAGameLib������sin(),cos()����
-�Փ˂��邱�Ƃ�����܂��B���̂悤�ȏꍇ�A
-GameLib::sin()�̂悤��GameLib::�����ċ�ʂ����܂��B
-Final���C�u�������g���Ă���ꍇ�A
-GameLib::Math::sin()�ƂȂ�܂��B
+C/C++標準ライブラリを使った場合、
+標準のsin(),cos()等と、GameLibが持つsin(),cos()等が
+衝突することがあります。このような場合、
+GameLib::sin()のようにGameLib::をつけて区別をします。
+Finalライブラリを使っている場合、
+GameLib::Math::sin()となります。
 
-2008�܂ł�math.h���C���N���[�h���Ȃ����肱�̖��͋N����܂���ł������A
-2010�ł�sstream,string�����C���N���[�h���Ă�������math.h
-���C���N���[�h����邽�߂��̖�肪�������܂��B
+2008まではmath.hをインクルードしない限りこの問題は起こりませんでしたが、
+2010ではsstream,string等をインクルードしても中からmath.h
+がインクルードされるためこの問題が発生します。
 
-1.�����\��
+1.内部構造
 
-�ȑO��Modules.sln�̉���Math,Graphics�Ȃǂ̕����̃v���W�F�N�g������܂������A
-�������Ă���܂��B
+以前はModules.slnの下にMath,Graphicsなどの複数のプロジェクトがありましたが、
+統合してあります。
 
-2.DebugStream��string�Ή�
+2.DebugStreamのstring対応
 
-2008�܂�std::string��cout�ɂ��̂܂ܓn���܂������A
-2010�łł͓n���܂���B
+2008までstd::stringをcoutにそのまま渡せましたが、
+2010版では渡せません。
 
 cout << s.c_str();
 
-�Ƃ����悤�ɁAc_str()��ǂ��const char*�����o���Ă���n���Ă��������B
+というように、c_str()を読んでconst char*を取り出してから渡してください。

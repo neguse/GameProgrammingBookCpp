@@ -12,7 +12,7 @@ for ( $i = 0; $i < @projs; ++$i ){
 		print OUT "devenv /Rebuild Release $projs[ $i ]\r\n";
 		close OUT;
 		system("./buildTmp.bat");
-		$projs[ $i ] = ""; #I‚í‚Á‚½‚©‚çÁ‚·
+		$projs[ $i ] = ""; #çµ‚ã‚ã£ãŸã‹ã‚‰æ¶ˆã™
 	}
 }
 
@@ -30,4 +30,3 @@ for ( $i = 0; $i < @projs; ++$i ){
 		system("./buildTmp.bat");
 	}
 }
-

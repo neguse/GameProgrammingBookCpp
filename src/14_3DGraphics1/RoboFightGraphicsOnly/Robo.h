@@ -10,7 +10,7 @@ class Matrix44;
 
 class Robo{
 public:
-	Robo( int id ); //”Ô†‚à‚ç‚¤B©•ª‚ª‰½”Ô‚©’m‚è‚½‚¢‚Ì‚ÅB
+	Robo( int id ); //ç•ªå·ã‚‚ã‚‰ã†ã€‚è‡ªåˆ†ãŒä½•ç•ªã‹çŸ¥ã‚ŠãŸã„ã®ã§ã€‚
 	~Robo();
 	void draw( const Matrix44& perspectiveViewMatrix ) const;
 	void update( 

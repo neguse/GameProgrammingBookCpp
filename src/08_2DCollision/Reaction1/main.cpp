@@ -28,8 +28,8 @@ public:
 	int mHalfSize;
 };
 bool gFirstFrame = true;
-Square gPlayer; //©ƒLƒƒƒ‰‚Ì‚Â‚à‚è
-Square gWall; //•Ç
+Square gPlayer; //è‡ªã‚­ãƒ£ãƒ©ã®ã¤ã‚‚ã‚Š
+Square gWall; //å£
 
 namespace GameLib{
 	void Framework::update(){
@@ -39,7 +39,7 @@ namespace GameLib{
 			gPlayer.set( 16, 16, 16 );
 			gWall.set( 160, 120, 16 );
 		}
-		//ˆÚ“®—ÊƒQƒbƒg
+		//ç§»å‹•é‡ã‚²ãƒƒãƒˆ
 		int dx = 0;
 		int dy = 0;
 		if ( isKeyOn( 'a' ) ){
@@ -53,23 +53,23 @@ namespace GameLib{
 			dy = 1;
 		}
 		unsigned* vram = videoMemory();
-		//ˆÚ“®
+		//ç§»å‹•
 		gPlayer.mX += dx;
 		gPlayer.mY += dy;
-		//Õ“Ëˆ—
+		//è¡çªå‡¦ç†
 		unsigned color = 0xffff0000;
 		if ( gPlayer.isIntersect( gWall ) ){
 			color = 0xffffffff;
-			//“®‚©‚È‚©‚Á‚½‚±‚Æ‚É‚·‚é
+			//å‹•ã‹ãªã‹ã£ãŸã“ã¨ã«ã™ã‚‹
 			gPlayer.mX -= dx;
 			gPlayer.mY -= dy;
 		}
-		//•`‰æ
-		//ˆê’UƒNƒŠƒA
+		//æç”»
+		//ä¸€æ—¦ã‚¯ãƒªã‚¢
 		for ( int i = 0; i < width() * height(); ++i ){
 			vram[ i ] = 0;
 		}
-		//“®‚©‚È‚¢‚Ù‚¤•`‰æ
+		//å‹•ã‹ãªã„ã»ã†æç”»
 		for ( int y = 0; y < 32; ++y ){
 			for ( int x = 0; x < 32; ++x ){
 				int tx = x + gWall.mX - 16;
@@ -77,7 +77,7 @@ namespace GameLib{
 				vram[ ty * width() + tx ] = 0xff0000ff; 
 			}
 		}
-		//“®‚­‚Ù‚¤•`‰æ
+		//å‹•ãã»ã†æç”»
 		for ( int y = 0; y < 32; ++y ){
 			for ( int x = 0; x < 32; ++x ){
 				int tx = x + gPlayer.mX - 16;
