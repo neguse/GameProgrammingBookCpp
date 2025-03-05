@@ -56,8 +56,6 @@ class State {
     OBJ_UNKNOWN,
   };
   void setSize(const char* stageData, int size);
-  // マス描画関数
-  static void drawCell(int x, int y, unsigned color);
 
   int mWidth;
   int mHeight;
@@ -112,18 +110,6 @@ void mainLoop() {
     cout << "Congratulation! you win." << endl;
     delete gState;
     gState = 0;
-  }
-  // 終了判定
-  if (input == 'q') {
-    Framework::instance().requestEnd();
-  }
-  // ×ボタン押されてる？
-  if (Framework::instance().isEndRequested()) {
-    if (gState) {
-      delete gState;
-      gState = 0;
-    }
-    return;
   }
 }
 
@@ -231,6 +217,8 @@ void State::setSize(const char* stageData, int size) {
 }
 
 void State::draw() const {
+  unsigned* vram = Framework::instance().videoMemory();
+  unsigned windowWidth = Framework::instance().width();
   for (int y = 0; y < mHeight; ++y) {
     for (int x = 0; x < mWidth; ++x) {
       Object o = mObjects(x, y);
@@ -275,19 +263,9 @@ void State::draw() const {
             break;
         }
       }
-      drawCell(x, y, color);
+      vram[y * windowWidth + x] = color;
     }
     cout << endl;
-  }
-}
-
-void State::drawCell(int x, int y, unsigned color) {
-  unsigned* vram = Framework::instance().videoMemory();
-  unsigned windowWidth = Framework::instance().width();
-  for (int i = 0; i < 16; ++i) {
-    for (int j = 0; j < 16; ++j) {
-      vram[(y * 16 + i) * windowWidth + (x * 16 + j)] = color;
-    }
   }
 }
 

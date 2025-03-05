@@ -1,0 +1,77 @@
+
+add_library(GameLibsModules
+    ./src/Base/Compressor.cpp
+    ./src/Base/Conversion.cpp
+    ./src/Base/DebugStream.cpp
+    ./src/Base/Halt.cpp
+    ./src/Base/IBinaryStream.cpp
+    ./src/Base/MemoryManager.cpp
+    ./src/Base/OStringStream.cpp
+    ./src/Base/PrimeNumber.cpp
+    ./src/Base/RefString.cpp
+    ./src/FileIO/InFile.cpp
+    ./src/FileIO/Manager.cpp
+    ./src/FileIO/OutFile.cpp
+    ./src/Graphics/IndexBuffer.cpp
+    ./src/Graphics/Manager.cpp
+    ./src/Graphics/Texture.cpp
+    ./src/Graphics/VertexBuffer.cpp
+    ./src/Input/Joystick.cpp
+    ./src/Input/Keyboard.cpp
+    ./src/Input/Manager.cpp
+    ./src/Input/Mouse.cpp
+    ./src/Math/Functions.cpp
+    ./src/Math/Matrix22.cpp
+    ./src/Math/Matrix23.cpp
+    ./src/Math/Matrix33.cpp
+    ./src/Math/Matrix34.cpp
+    ./src/Math/Matrix44.cpp
+    ./src/Math/Random.cpp
+    ./src/Math/vector2.cpp
+    ./src/Math/Vector3.cpp
+    ./src/Math/Vector4.cpp
+    ./src/PseudoXml/Attribute.cpp
+    ./src/PseudoXml/Document.cpp
+    ./src/PseudoXml/DocumentImpl.cpp
+    ./src/PseudoXml/Element.cpp
+    ./src/PseudoXml/Tag.cpp
+    ./src/Scene/Animation.cpp
+    ./src/Scene/AnimationNode.cpp
+    ./src/Scene/Batch.cpp
+    ./src/Scene/CollisionDetector.cpp
+    ./src/Scene/CollisionMesh.cpp
+    ./src/Scene/Container.cpp
+    ./src/Scene/Font.cpp
+    ./src/Scene/Model.cpp
+    ./src/Scene/PrimitiveRenderer.cpp
+    ./src/Scene/StringRenderer.cpp
+    ./src/Scene/Tree.cpp
+    ./src/Scene/TreeTemplate.cpp
+    ./src/Sound/Manager.cpp
+    ./src/Sound/Player.cpp
+    ./src/Sound/Wave.cpp
+    ./src/Threading/Event.cpp
+    ./src/Threading/Functions.cpp
+    ./src/Threading/Manager.cpp
+    ./src/Threading/Mutex.cpp
+    ./src/Threading/Semaphore.cpp
+    ./src/Threading/Thread.cpp
+    ./src/WindowCreator/WindowCreator.cpp
+)
+
+target_include_directories(GameLibsModules
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${CMAKE_CURRENT_SOURCE_DIR}/../include)
+
+if (MSVC)
+    target_link_options(GameLibsModules
+        PUBLIC
+            winmm.lib
+            d3d9.lib
+            dsound.lib
+            dinput8.lib
+            dxguid.lib
+            /SUBSYSTEM:WINDOWS)
+endif()
+        

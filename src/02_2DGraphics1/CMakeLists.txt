@@ -1,0 +1,6 @@
+link_libraries(2DGraphics1)
+add_subdirectory(drawPixels)
+add_subdirectory(NimotsukunBox)
+add_subdirectory(NimotsukunBoxWithTermination)
+add_subdirectory(NimotsukunTextOnly)
+add_subdirectory(NimotsuKunDot)
