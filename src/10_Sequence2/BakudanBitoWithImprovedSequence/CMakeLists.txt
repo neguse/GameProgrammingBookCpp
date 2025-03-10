@@ -1,0 +1,26 @@
+add_executable(10_BakudanBitoWithImprovedSequence
+    Game/DynamicObject.cpp
+    Game/State.cpp
+    Game/StaticObject.cpp
+    Sequence/Ending.cpp
+    Sequence/Game/Clear.cpp
+    Sequence/Game/Failure.cpp
+    Sequence/Game/Judge.cpp
+    Sequence/Game/Parent.cpp
+    Sequence/Game/Pause.cpp
+    Sequence/Game/Play.cpp
+    Sequence/Game/Ready.cpp
+    Sequence/GameOver.cpp
+    Sequence/Parent.cpp
+    Sequence/Title.cpp
+    File.cpp
+    Image.cpp
+    Pad.cpp
+    Square.cpp
+    main.cpp)
+target_include_directories(10_BakudanBitoWithImprovedSequence
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(10_BakudanBitoWithImprovedSequence
+    PRIVATE
+        InputDevices)
