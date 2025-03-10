@@ -1,0 +1,7 @@
+link_libraries(RealTime)
+add_subdirectory(NimotsuKunConstantFrameRate)
+add_subdirectory(NimotsuKunRealTime)
+add_subdirectory(NimotsuKunRealTime2)
+add_subdirectory(NimotsuKunSmoothMove)
+add_subdirectory(NimotsuKunVariableFrameRate)
+add_subdirectory(Tearing)
