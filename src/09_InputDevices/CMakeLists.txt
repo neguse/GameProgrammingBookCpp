@@ -1,0 +1,5 @@
+link_libraries(InputDevices)
+add_subdirectory(BakudanBitoWithJoystick)
+add_subdirectory(Joystick)
+add_subdirectory(Keyboard)
+add_subdirectory(Mouse)
