@@ -1,0 +1,17 @@
+add_executable(05_NimosuKunWithSequence2
+    Sequence/Game/Clear.cpp
+    Sequence/Game/Loading.cpp
+    Sequence/Game/Loading.cpp
+    Sequence/Game/Menu.cpp
+    Sequence/Game/Parent.cpp
+    Sequence/Game/Play.cpp
+    Sequence/Parent.cpp
+    Sequence/StageSelect.cpp
+    Sequence/Title.cpp
+    File.cpp
+    Image.cpp
+    State.cpp
+    main.cpp)
+target_include_directories(05_NimosuKunWithSequence2
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR})

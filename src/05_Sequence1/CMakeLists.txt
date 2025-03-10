@@ -1,0 +1,3 @@
+link_libraries(Sequence1)
+add_subdirectory(NimotsuKunWithSequence1)
+add_subdirectory(NimotsuKunWithSequence2)
