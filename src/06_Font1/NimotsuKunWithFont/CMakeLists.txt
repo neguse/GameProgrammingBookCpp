@@ -1,0 +1,18 @@
+add_executable(06_NimosuKunWithFont
+    Sequence/Game/Clear.cpp
+    Sequence/Game/Loading.cpp
+    Sequence/Game/Loading.cpp
+    Sequence/Game/Menu.cpp
+    Sequence/Game/Parent.cpp
+    Sequence/Game/Play.cpp
+    Sequence/Parent.cpp
+    Sequence/StageSelect.cpp
+    Sequence/Title.cpp
+    File.cpp
+    Image.cpp
+    State.cpp
+    StringRenderer.cpp
+    main.cpp)
+target_include_directories(06_NimosuKunWithFont
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR})
