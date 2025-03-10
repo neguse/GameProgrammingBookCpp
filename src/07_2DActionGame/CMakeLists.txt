@@ -1,0 +1,5 @@
+link_libraries(2DActionGame)
+# add_subdirectory(BakudanBitoBackgroundOnly)
+add_subdirectory(BakudanBitoSequenceOnly)
+add_subdirectory(BakudanBitoWithDynamicObject)
+add_subdirectory(NimotsuKunWithSystemFont)

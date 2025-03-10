@@ -1,0 +1,19 @@
+add_executable(07_BakudanBitoSequenceOnly
+    Sequence/Ending.cpp
+    Sequence/Game/Clear.cpp
+    Sequence/Game/Failure.cpp
+    Sequence/Game/Judge.cpp
+    Sequence/Game/Parent.cpp
+    Sequence/Game/Pause.cpp
+    Sequence/Game/Play.cpp
+    Sequence/Game/Ready.cpp
+    Sequence/GameOver.cpp
+    Sequence/Parent.cpp
+    Sequence/Title.cpp
+    File.cpp
+    Image.cpp
+    State.cpp
+    main.cpp)
+target_include_directories(07_BakudanBitoSequenceOnly
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR})
