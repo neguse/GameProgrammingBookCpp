@@ -1,4 +1,4 @@
-#include "Framework.h"
+#include "GameLib/Framework.h"
 using namespace GameLib;
 
 #include <fstream>
@@ -184,7 +184,7 @@ State::State(const char* stageData, int size) {
         break;
     }
     if (t != OBJ_UNKNOWN) {  // 知らない文字なら無視するのでこのif文がある
-      mObjects(x, y) = t;           // 書き込み
+      mObjects(x, y) = t;    // 書き込み
       mGoalFlags(x, y) = goalFlag;  // ゴール情報
       ++x;
     }

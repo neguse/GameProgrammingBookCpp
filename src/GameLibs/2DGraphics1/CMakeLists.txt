@@ -1,5 +1,5 @@
 add_library(2DGraphics1
-    src/Framework.cpp)
+    src/GameLib/Framework.cpp)
 target_link_libraries(2DGraphics1
     PUBLIC
         GameLibsModules)

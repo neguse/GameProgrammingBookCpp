@@ -1,7 +1,7 @@
 #include "Image.h"
 #include "File.h"
 
-#include "Framework.h"
+#include "GameLib/Framework.h"
 using namespace GameLib;
 
 Image::Image(const char* filename) : mWidth(0), mHeight(0), mData(0) {
